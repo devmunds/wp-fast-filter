@@ -28,7 +28,7 @@ if(!function_exists('dms_get_posts')){
                 'orderby' => 'post_date',
                 'order' => 'DESC',
                 'post_type' => 'post',
-                'posts_per_page' => 5,
+                'posts_per_page' => $atts['posts_per_page'],
                 'paged' => $paged,
                 'tax_query' => array(
                     array(
