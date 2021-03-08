@@ -1,0 +1,29 @@
+.filter-wrap{
+    margin-bottom: 30px;
+}
+
+.filter-content{
+    width: 100%;
+}
+.filter-form input{
+    padding: 9px;
+    border: 1px solid #104599;
+}
+#filter-submit{
+    background-color: #104599;
+    color: #fff;
+    padding: 10px;
+}
+.filter-post-wrap{
+    overflow: hidden;
+    margin-bottom: 20px;
+    background-color: #e4e4e4f4;
+    border-radius: 20px;
+    padding: 15px;
+}
+.pgd-alignleft{
+    float: left;
+}
+.pgd-alignright{
+    float: right;
+}
