@@ -3,7 +3,13 @@
 * get posts by category
 */
 if(!function_exists('dms_get_posts')){
-    function dms_get_posts(){
+    function dms_get_posts($atts){
+
+        $atts = shortcode_atts(
+            array(
+                'posts_per_page' => ' ' ,
+                'category_slug' => ' ',
+            ), $atts, 'wp-fast-filter');
 
         ?>
         <div class="filter-content">
@@ -15,7 +21,7 @@ if(!function_exists('dms_get_posts')){
             </div>       
         <?php
 
-        $catname = get_category_by_slug('economico');
+        $catname = get_category_by_slug($atts['category_slug']);
         $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 
         $args = array(
