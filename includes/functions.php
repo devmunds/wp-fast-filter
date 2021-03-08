@@ -1,4 +1,30 @@
-<?php 
+<?php
+
+//Add template filter
+if(! function_exists('add_wpfst_content_filter')){
+    function add_wpfst_content_filter(){
+        $plugin_uri = str_replace('/includes', '' , plugin_dir_path(__DIR__));
+        include $plugin_uri . 'views/templates/forms/filter.php';
+    }
+}
+//Add template linting posts
+if(! function_exists('add_wpfst_content_linting_posts')){
+    function add_wpfst_content_linting_posts(){
+        $plugin_uri = str_replace('/includes', '' , plugin_dir_path(__DIR__));
+        include $plugin_uri . 'views/templates/listings/listing-posts.php';
+    }
+}
+
+/*
+*Add template previous and next
+*/
+if(! function_exists('add_wpfst_content_previous_next')){
+    function add_wpfst_content_previous_next($query){
+        $plugin_uri = str_replace('/includes', '' , plugin_dir_path(__DIR__));
+        include $plugin_uri . 'views/templates/listings/nav-previous-next.php';
+    }
+}
+
 /*
 * get posts by category
 */
@@ -11,15 +37,7 @@ if(!function_exists('dms_get_posts')){
                 'category_slug' => ' ',
             ), $atts, 'wp-fast-filter');
 
-        ?>
-        <div class="filter-content">
-            <div class="filter-wrap">
-                <form action="" class="filter-form">
-                    <input type="date" name="post_date" id="filter-date">
-                    <input type="submit" value="Pesquisar" id="filter-submit">
-                </form>
-            </div>       
-        <?php
+        do_action('wpfst_content_filter');
 
         $catname = get_category_by_slug($atts['category_slug']);
         $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
@@ -52,23 +70,16 @@ if(!function_exists('dms_get_posts')){
                                     
                 while ( $query->have_posts() ) {
                     $query->the_post(); 
-                    
-                    ?>                                    
-                        <article class="filter-post-wrap">                            
-                            <h2 class="entry-title"><a href="' <?php echo  get_post_permalink(); ?>"><?php echo get_the_title(); ?></a></h2>
-                            <?php the_excerpt(); ?>                       
-                        </article>
-                    <?php 
+                    do_action('wpfst_content_linting_posts');
                 }
-                ?>
-                <div class="nav-previous"> <?php previous_posts_link( __( '« Entradas Antigas', 'dms-filter-posts' ) ) ?> </div>
-                <div class="nav-next">  <?php next_posts_link( __( 'Próximas Entradas »', 'dms-filter-posts' ), $query->max_num_pages ) ?> </div>
-                <?php
+
+                do_action('wpfst_content_previous_next', $query);
+
                 wp_reset_postdata();
                
 
             } else {
-                _e('<h2>Nem um post foi encontrado!</h2>','dms-filter-post');
+                _e('<h2>Nem um post foi encontrado!</h2>','wp-fast-filter');
             }
 
             echo "</div>";
