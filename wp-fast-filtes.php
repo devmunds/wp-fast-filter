@@ -12,6 +12,12 @@
 * License URI: https://www.gnu.org/licenses/gpl-2.0.html
 */
 
+if ( ! defined( 'ABSPATH' ) ) {
+	header( 'Status: 403 Forbidden' );
+	header( 'HTTP/1.1 403 Forbidden' );
+	exit;
+}
+
 $plugin_uri = plugin_dir_path(__FILE__);
 
 require_once($plugin_uri . 'includes/functions.php');
