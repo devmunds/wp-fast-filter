@@ -42,26 +42,42 @@ if(!function_exists('dms_get_posts')){
         $catname = get_category_by_slug($atts['category_slug']);
         $paged = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
 
+        if(!empty(isset($_GET['filter-year']))){
+            $year = $_GET['filter-year'];
+        }
+
+        if(!empty(isset($_GET['filter-month']))){
+            $month = $_GET['filter-month'];
+        }
+
         $args = array(
-                'orderby' => 'post_date',
-                'order' => 'DESC',
-                'post_type' => 'post',
-                'posts_per_page' => $atts['posts_per_page'],
-                'paged' => $paged,
-                'tax_query' => array(
-                    array(
-                        'taxonomy' => 'category',
-                        'field' => 'name',
-                        'terms' => $catname,
-                        'include_children' => false
-                    ),
+            'orderby' => 'post_date',
+            'order' => 'ASC',
+            'post_type' => 'post',
+            'posts_per_page' => $atts['posts_per_page'],
+            'paged' => $paged,
+            'tax_query' => array(
+                array(
+                    'taxonomy' => 'category',
+                    'field' => 'name',
+                    'terms' => $catname,
+                    'include_children' => false
                 ),
-                'date_query' => array(
-                    array(
-                        'after'     => $_GET['post_date'],
-                        'inclusive' => true,                        
+            ),                
+            'date_query' => array(
+                'relation' => 'OR',
+                array(
+                    'year'=> $year,
+                    'month' => $month,                    
+                    'inclusive' => true
                 ),
+                array(
+                    'month' => $_GET['filter-month'],
+                    'inclusive' => true
+                ),                    
+                                                        
             ),
+        
         );
 
         $query = new WP_Query( $args );
