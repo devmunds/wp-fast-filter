@@ -9,6 +9,11 @@
     padding: 9px;
     border: 1px solid #104599;
 }
+.filter-form select{
+    padding: 9px;
+    width: 100px;
+    border: 1px solid #104599;
+}
 #filter-submit{
     background-color: #104599;
     color: #fff;
@@ -26,4 +31,8 @@
 }
 .pgd-alignright{
     float: right;
+}
+.align-right{
+    text-align: right !important;
+    color: #104599 !important;
 }
