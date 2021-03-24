@@ -37,6 +37,8 @@ if(!function_exists('dms_get_posts')){
                 'category_slug' => ' ',
             ), $atts, 'wp-fast-filter');
 
+        //ob_start();
+
         do_action('wpfst_content_filter');
 
         $catname = get_category_by_slug($atts['category_slug']);
@@ -50,9 +52,27 @@ if(!function_exists('dms_get_posts')){
             $month = $_GET['filter-month'];
         }
 
+        $data_query = [];
+
+        if($month >= 1){
+            $data_query = [
+                [
+                    'year'=> $year,
+                    'month' => $month,  
+                ]
+            ];
+        }elseif($year >= 1){
+            $data_query = [
+                [
+                    'year'=> $year,
+                ]
+            ];
+        }
+
+
         $args = array(
             'orderby' => 'post_date',
-            'order' => 'ASC',
+            'order' => 'DESC',
             'post_type' => 'post',
             'posts_per_page' => $atts['posts_per_page'],
             'paged' => $paged,
@@ -64,19 +84,7 @@ if(!function_exists('dms_get_posts')){
                     'include_children' => false
                 ),
             ),                
-            'date_query' => array(
-                'relation' => 'OR',
-                array(
-                    'year'=> $year,
-                    'month' => $month,                    
-                    'inclusive' => true
-                ),
-                array(
-                    'month' => $_GET['filter-month'],
-                    'inclusive' => true
-                ),                    
-                                                        
-            ),
+            'date_query' => $data_query
         
         );
 
@@ -99,6 +107,8 @@ if(!function_exists('dms_get_posts')){
             }
 
             echo "</div>";
+
+            //return ob_end_clean();
     }
     
 }
