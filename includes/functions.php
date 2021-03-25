@@ -103,7 +103,7 @@ if(!function_exists('dms_get_posts')){
                
 
             } else {
-                _e('<h2>Nem um post foi encontrado!</h2>','wp-fast-filter');
+                _e('<h2>Nemhum post encontrado.</h2>','wp-fast-filter');
             }
 
             echo "</div>";
