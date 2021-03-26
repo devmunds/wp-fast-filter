@@ -103,7 +103,7 @@ if(!function_exists('dms_get_posts')){
                
 
             } else {
-                _e('<h2>Nenhuma noticia  encontrada.</h2>','wp-fast-filter');
+                _e('<h2>Nenhuma notícia  encontrada.</h2>','wp-fast-filter');
             }
 
             echo "</div>";
