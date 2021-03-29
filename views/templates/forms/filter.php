@@ -1,6 +1,6 @@
 <div class="filter-content">
     <div class="filter-wrap">
-        <form action="" class="filter-form">
+        <form action="<?php echo get_permalink(); ?>" class="filter-form" method="post">        
             <select name="filter-year" id="filter-year">
                 <option value="<?php echo date( 'Y' );?>">Ano</option>
                 <?php                     

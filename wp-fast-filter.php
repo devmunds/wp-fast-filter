@@ -1,8 +1,8 @@
 <?php
 /*
 * Plugin name: WP Fast Filter
-* Version: 1.0.7
-* Description: Custom filter by shortcode [wp-fast-filtes posts_per_page="10" category_slug="economico"]
+* Version: 1.0.11
+* Description: Custom filter by shortcode [wp-fast-filtes posts_per_page="10" category_slug="sem-categoria"]
 * Author: Devmunds
 * Author uri: https://devmunds.com.br/
 * Requires PHP: 7.0.2
