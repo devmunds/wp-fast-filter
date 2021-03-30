@@ -44,12 +44,8 @@ if(!function_exists('dms_get_posts')){
             $atts, 'wp-fast-filter'
         );    
 
-        ob_start();
-        
         $html           = do_action('wpfst_content_filter');
-        
-        ob_clean();
-        
+
         $catname        = get_category_by_slug($atts['category_slug']);
         $paged          = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
         $order          = 'DESC';
@@ -100,16 +96,12 @@ if(!function_exists('dms_get_posts')){
             if ( $query->have_posts() ) {
                                     
                 while ( $query->have_posts() ) {
-                    $query->the_post();         
-                    //$html = do_action('wpfst_content_linting_posts');                    
+                    $query->the_post();
+                    $html = do_action('wpfst_content_linting_posts');                    
                 }
-                
-                ob_start();
-                
+                                
                 $html = do_action('wpfst_content_previous_next', $query);
                 
-                ob_clean();
-
                 wp_reset_postdata();
                
 
@@ -145,7 +137,7 @@ if(!function_exists('dms_enqueue_scripts')){
             $plugin_uri = str_replace('/includes', '' , plugin_dir_url(__FILE__));
 
             //Register scripts
-            wp_register_style('wpftf-style',  $plugin_uri . "/views/styles/css/style.css");
+            wp_register_style('wpftf-style',  $plugin_uri . "views/styles/css/style.css", array(), '1.0.1', false);
 
             //Enqueue scripts
             wp_enqueue_style('wpftf-style');

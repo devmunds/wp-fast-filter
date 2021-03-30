@@ -1,10 +1,6 @@
 <?php
 
 if(!is_admin()){
-    /*
-    *Add shortcode and enqueue scripts
-    */
-    add_action( 'wp_enqueue_scripts','dms_enqueue_scripts');
 
     /*
     * Add template filter
@@ -18,6 +14,11 @@ if(!is_admin()){
     add_action('wpfst_content_previous_next','add_wpfst_content_previous_next',10, 1);
 
     add_action('init', 'add_dms_shortcode');
+
+        /*
+    *Add shortcode and enqueue scripts
+    */
+    add_action( 'wp_enqueue_scripts','dms_enqueue_scripts', 200);
 
 }
 

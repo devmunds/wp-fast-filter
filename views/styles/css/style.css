@@ -4,6 +4,7 @@
 
 .filter-content{
     width: 100%;
+    margin-bottom: 30px;
 }
 .filter-form input{
     padding: 9px;
@@ -22,7 +23,7 @@
 .filter-post-wrap{
     overflow: hidden;
     margin-bottom: 20px;
-    background-color: #e4e4e4f4;
+    background-color: #eeeeeef4;
     border-radius: 20px;
     padding: 15px;
 }
@@ -35,4 +36,32 @@
 .align-right{
     text-align: right !important;
     color: #104599 !important;
+}
+
+
+.nav-menu-pagination{
+    padding-top: 20px;
+    padding-bottom: 30px;
+    overflow: hidden;
+}
+.nav-menu-pagination ul li{
+    list-style-type: none !important;
+}
+.nav-menu-pagination li a{
+    background-color: #104599;
+    padding: 10px !important;
+    border-radius: 25px !important;
+    color: #fff !important;
+}
+.nav-menu-pagination li a:hover{
+    background-color: #104599 !important;
+    padding: 10px !important;
+    border-radius: 25px !important;
+    color: #fff !important;
+}
+.text-left{
+    float: left !important;
+}
+.text-right{
+    float: right !important;
 }
