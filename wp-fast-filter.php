@@ -1,7 +1,7 @@
 <?php
 /*
 * Plugin name: WP Fast Filter
-* Version: 1.0.11
+* Version: 1.0.12
 * Description: Custom filter by shortcode [wp-fast-filtes posts_per_page="10" category_slug="sem-categoria"]
 * Author: Devmunds
 * Author uri: https://devmunds.com.br/

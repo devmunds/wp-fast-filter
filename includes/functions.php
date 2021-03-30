@@ -36,17 +36,20 @@ if(! function_exists('add_wpfst_content_previous_next')){
 if(!function_exists('dms_get_posts')){
     function dms_get_posts($atts = [], $html = null ){
 
-        if(is_admin()){
-            $atts = shortcode_atts(
-                array(
-                    'posts_per_page' => '' ,
-                    'category_slug'  => '',
-                ),             
-                $atts, 'wp-fast-filter'
-            );
-        }
+        $atts = shortcode_atts(
+            array(
+                'posts_per_page' => '' ,
+                'category_slug'  => '',
+            ),             
+            $atts, 'wp-fast-filter'
+        );    
 
+        ob_start();
+        
         $html           = do_action('wpfst_content_filter');
+        
+        ob_clean();
+        
         $catname        = get_category_by_slug($atts['category_slug']);
         $paged          = ( get_query_var( 'paged' ) ) ? get_query_var( 'paged' ) : 1;
         $order          = 'DESC';
@@ -98,10 +101,14 @@ if(!function_exists('dms_get_posts')){
                                     
                 while ( $query->have_posts() ) {
                     $query->the_post();         
-                    $html = do_action('wpfst_content_linting_posts');                    
+                    //$html = do_action('wpfst_content_linting_posts');                    
                 }
-
+                
+                ob_start();
+                
                 $html = do_action('wpfst_content_previous_next', $query);
+                
+                ob_clean();
 
                 wp_reset_postdata();
                
